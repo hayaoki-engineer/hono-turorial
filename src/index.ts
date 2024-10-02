@@ -37,8 +37,6 @@ app.get("/posts/:id", (c) => {
   }
 })
 
-/* This part of the code is handling a POST request to create a new blog post. Here's a breakdown of
-what it does: */
 app.post("/posts", async (c) => {
   const { title, content } = await c.req.json<{ title: string; content: string }>();
   const newPost = { id: String(blogPosts.length + 1), title, content }
