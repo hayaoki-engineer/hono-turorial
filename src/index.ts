@@ -60,4 +60,19 @@ app.put("/posts/:id", async (c) => {
   return c.json(blogPosts[index])
 })
 
+/* The `app.delete("/posts/:id", async (c) => { ... })` function is handling a DELETE request to delete
+a specific blog post based on its ID. Here's a breakdown of what the code is doing: */
+app.delete("/posts/:id", async (c) => {
+  const id = c.req.param("id");
+  const index = blogPosts.findIndex((p) => p.id === id);
+
+  if (index === -1) {
+    return c.json({ message: "Post not found" }, 404);
+  }
+
+  blogPosts = blogPosts.filter((p) => p.id !== id)
+  
+  return c.json({ message: "Blog post Deleted" })
+})
+
 export default app
